@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#050505" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="FelFel" />
+<title>FelFel Manager</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230FB864'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='%23050505' font-family='Arial' font-weight='bold'%3Eف%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/1-core.css" />
+<link rel="stylesheet" href="assets/css/2-layout.css" />
+<link rel="stylesheet" href="assets/css/3-components.css" />
+<link rel="stylesheet" href="assets/css/4-features.css" />
+<link rel="stylesheet" href="assets/css/5-pages.css" />
+<link rel="stylesheet" href="assets/css/6-utilities.css" />
+</head>
+<body>
+<div class="bg-scene" aria-hidden="true">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-illustrations" aria-hidden="true"></div>
+</div>
+
+<div id="cursorGlow" class="cursor-glow"></div>
+
+<div id="pinLock" class="pin-lock hidden">
+  <div class="pin-box">
+<div class="pin-brand">
+  <img src="assets/logo.png" class="logo-pepper" alt="FelFel">
+</div>
+    <h2>FelFel Manager</h2>
+    <p data-i18n="pin.enter">أدخل الرمز PIN</p>
+    <input id="pinInput" class="pin-input" type="password" inputmode="numeric" maxlength="6" autocomplete="off" />
+    <div id="pinError" class="pin-error"></div>
+  </div>
+</div>
+
+<div id="splash" class="splash">
+  <div class="splash-logo">
+<div class="splash-letter">
+  <img src="assets/logo.png" alt="FelFel" style="width:42px;height:42px;object-fit:contain">
+</div>
+    <div class="splash-ring"></div>
+  </div>
+  <div class="splash-name">FelFel Manager</div>
+</div>
+
+<div id="app" class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+<div class="brand-logo">
+  <img src="assets/logo.png" class="logo-pepper" alt="FelFel">
+</div>
+      <div class="brand-text"><h1>FelFel</h1><span data-i18n="brand.tagline">Manager</span></div>
+    </div>
+    <nav class="nav" id="nav">
+      <button class="nav-item active" data-page="dashboard"><span class="ico">◧</span><span data-i18n="nav.dashboard">لوحة التحكم</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="inventory"><span class="ico">▦</span><span data-i18n="nav.inventory">الإنتاج والمخزون</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="sales"><span class="ico">▤</span><span data-i18n="nav.sales">المبيعات والفواتير</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="customers"><span class="ico">◍</span><span data-i18n="nav.customers">العملاء والديون</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="expenses"><span class="ico">◈</span><span data-i18n="nav.expenses">المصروفات</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="cashbox"><span class="ico">◉</span><span data-i18n="nav.cashbox">الخزنة</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="workers"><span class="ico">◐</span><span data-i18n="nav.workers">العمال والأجور</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="partners"><span class="ico">◑</span><span data-i18n="nav.partners">الشركاء والأرباح</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="reports"><span class="ico">▣</span><span data-i18n="nav.reports">التقارير</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="activity"><span class="ico">☰</span><span data-i18n="nav.activity">سجل النشاط</span><span class="nav-indicator"></span></button>
+      <button class="nav-item" data-page="settings"><span class="ico">⚙</span><span data-i18n="nav.settings">الإعدادات</span><span class="nav-indicator"></span></button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn-ghost" id="langBtn">EN</button>
+      <button class="btn-ghost" id="themeBtn">☀</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <h2 id="pageTitle">لوحة التحكم</h2>
+      <div class="topbar-actions">
+        <button class="btn-ghost calc-btn" id="profitCalcBtn" title="حاسبة الربح">🧮</button>
+        <button class="btn-ghost cmd-btn" id="cmdBtn" title="Ctrl+K">⌘ K</button>
+        <div class="cash-pill" id="cashPill"><span class="cash-dot"></span><span id="cashPillText">الخزنة: 0 ج.م</span></div>
+      </div>
+    </header>
+    <div id="backupBanner" class="backup-banner hidden"></div>
+    <div id="alertsBar" class="alerts-bar"></div>
+    <div id="content" class="content"></div>
+  </main>
+</div>
+
+<div id="cmdPalette" class="cmd-backdrop hidden">
+  <div class="cmd-box">
+    <input id="cmdInput" class="cmd-input" placeholder="اكتب أمر..." />
+    <div id="cmdResults" class="cmd-results"></div>
+  </div>
+</div>
+
+<div id="printArea" class="print-area"></div>
+<canvas id="confetti" class="confetti-canvas"></canvas>
+<button id="soundToggle" class="sound-toggle" title="Sound">🔊</button>
+<div id="toast" class="toast"></div>
+
+<div id="modal" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-header"><h3 id="modalTitle">نموذج</h3><button class="modal-close" id="modalClose">✕</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- Load in order -->
+<script src="assets/js/1-config.js"></script>
+<script src="assets/js/2-storage.js"></script>
+<script src="assets/js/3-utils.js"></script>
+<script src="assets/js/4-calc.js"></script>
+<script src="assets/js/5-render.js"></script>
+<script src="assets/js/6-actions.js"></script>
+<script src="assets/js/7-extras.js"></script>
+<script src="assets/js/8-app.js"></script>
+</body>
+</html>

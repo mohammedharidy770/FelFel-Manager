@@ -1,0 +1,214 @@
+/* =====================================================
+   5-pages.css — Charts + Goal + Overdue + QR + Activity + Print
+   ===================================================== */
+
+/* ===== Charts ===== */
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-top: 8px;
+}
+.chart-box canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== Monthly Goal Progress ===== */
+.goal-bar {
+  background: var(--surface-2);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+}
+.goal-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent-2));
+  border-radius: 999px;
+  transition: width 0.8s var(--ease);
+  box-shadow: 0 0 12px var(--accent-glow);
+  position: relative;
+  overflow: hidden;
+}
+.goal-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shine 2s linear infinite;
+}
+@keyframes shine {
+  0%, 60%, 100% { transform: translateX(-100%); }
+  80% { transform: translateX(100%); }
+}
+.goal-info {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ===== Overdue / Due Warning ===== */
+.overdue { color: var(--danger) !important; font-weight: 700; }
+.due-warn { color: var(--accent) !important; font-weight: 600; }
+
+/* ===== QR Box ===== */
+.qr-box {
+  display: inline-block;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+.qr-box img {
+  display: block;
+  width: 90px; height: 90px;
+}
+
+/* ===== Activity Log ===== */
+.log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.log-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.log-item:hover {
+  transform: translateX(-3px);
+  border-color: var(--border-strong);
+}
+[dir="ltr"] .log-item:hover { transform: translateX(3px); }
+.log-item .log-ico {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: grid; place-items: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.log-item .log-body { flex: 1; min-width: 0; }
+.log-item .log-title { font-weight: 600; margin-bottom: 2px; }
+.log-item .log-meta { font-size: 11.5px; color: var(--muted); }
+
+/* ===== Print Area (hidden normally) ===== */
+.print-area { display: none; }
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+  }
+  .bg-scene, .bg-illustrations, .sidebar, .topbar, .alerts-bar, .content,
+  .sound-toggle, .backup-banner, .pwa-install-btn,
+  .cmd-backdrop, .modal-backdrop, .toast, .cursor-glow, .confetti-canvas,
+  .pin-lock, .splash, .btn-ghost, #profitCalcBtn, #cmdBtn, #menuBtn { display: none !important; }
+  .print-area { display: block !important; }
+  .print-area * { color: #000 !important; }
+  .app { display: block !important; opacity: 1 !important; }
+
+  .invoice-paper {
+    width: 148mm;
+    min-height: 210mm;
+    padding: 15mm;
+    margin: 0 auto;
+    background: #fff;
+    font-family: 'Cairo', sans-serif;
+  }
+  .invoice-paper h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 24pt;
+    margin-bottom: 4pt;
+  }
+  .invoice-paper .head {
+    display: flex; justify-content: space-between;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10pt;
+    margin-bottom: 14pt;
+  }
+  .invoice-paper .head .right { text-align: right; }
+  .invoice-paper .head .left { text-align: left; font-size: 11pt; }
+  .invoice-paper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+  .invoice-paper th, .invoice-paper td {
+    padding: 6pt 8pt;
+    border: 1px solid #000;
+    text-align: right;
+  }
+  .invoice-paper th { background: #f0f0f0 !important; }
+  .invoice-paper .totals {
+    margin-top: 12pt;
+    display: flex; justify-content: flex-end;
+  }
+  .invoice-paper .totals table { width: 60%; }
+  .invoice-paper .footer {
+    margin-top: 20pt;
+    padding-top: 10pt;
+    border-top: 1px dashed #666;
+    text-align: center;
+    font-size: 10pt;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .invoice-paper .qr-box { display: inline-block; }
+  .invoice-paper .qr-box img { width: 60px; height: 60px; }
+}
+
+/* ===== Thermal Print (80mm) ===== */
+@media print {
+  body.thermal-print .invoice-paper {
+    width: 80mm;
+    min-height: auto;
+    padding: 4mm;
+    font-size: 9pt;
+  }
+  body.thermal-print .invoice-paper h1 { font-size: 14pt; }
+  body.thermal-print .invoice-paper th,
+  body.thermal-print .invoice-paper td { padding: 3pt 4pt; font-size: 8.5pt; }
+  body.thermal-print .invoice-paper .qr-box img { width: 40px; height: 40px; }
+  body.thermal-print .invoice-paper .totals table { width: 100%; }
+}
+/* ===== Daily Summary ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.summary-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.summary-item.full { grid-column: 1 / -1; }
+.summary-label {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.summary-value {
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.summary-value.big { font-size: 22px; }
+.summary-value.pos { color: var(--accent); }
+.summary-value.neg { color: var(--danger); }
+.summary-value.warn { color: var(--warning); }
+
+/* ===== Aging Report ===== */
+.text-warning { color: var(--warning); }

@@ -1,0 +1,107 @@
+/* =====================================================
+   6-utilities.css — Helpers + Scrollbar + Responsive + Accessibility
+   ===================================================== */
+
+/* ===== Helper Classes ===== */
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.text-muted { color: var(--muted); }
+.text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
+.mono { font-variant-numeric: tabular-nums; }
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  background-clip: content-box;
+}
+
+/* ===== Responsive — Tablet & Mobile ===== */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    inset-inline-start: 0;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s var(--ease);
+  }
+  [dir="rtl"] .sidebar { transform: translateX(100%); }
+  .sidebar.open { transform: translateX(0) !important; }
+  .menu-btn { display: block; }
+  .content { padding: 16px; }
+  .topbar { padding: 14px 16px; }
+  .cursor-glow { display: none; }
+  .cmd-btn { display: none; }
+  .alerts-bar.has-alerts { padding: 10px 16px; }
+  .alert-pill { font-size: 11px; padding: 6px 10px; }
+
+  /* Illustrations أصغر */
+  .ill { opacity: 0.045; filter: blur(1.2px); }
+  .ill-pepper, .ill-basket { width: 110px; height: 110px; }
+  .ill-tree, .ill-carrot { width: 80px; height: auto; }
+  .ill-tomato, .ill-sun, .ill-leaf { width: 70px; height: 70px; }
+  .ill-cucumber { width: 110px; height: 55px; }
+  .ill-tomato { top: 22%; inset-inline-start: 4%; }
+  .ill-carrot { top: 20%; inset-inline-end: 4%; }
+  .ill-cucumber { bottom: 20%; inset-inline-start: 4%; }
+  .ill-tree { bottom: 12%; inset-inline-end: 4%; }
+}
+
+/* ===== Responsive — Very Small Screens ===== */
+@media (max-width: 480px) {
+  .topbar h2 { font-size: 16px; }
+  .cash-pill { font-size: 11px; padding: 6px 12px; }
+  .stat-card { padding: 14px; }
+  .stat-card .value { font-size: 18px; }
+  .panel { padding: 14px; }
+  .modal { border-radius: 14px; }
+  .modal-header, .modal-body, .modal-footer { padding: 14px 16px; }
+  .btn { padding: 9px 14px; font-size: 12.5px; }
+  .form-grid { grid-template-columns: 1fr; }
+  th, td { padding: 8px 10px; font-size: 12px; }
+}
+
+/* ===== Accessibility — Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bg-grid,
+  .cursor-glow,
+  .bg-illustrations .ill { display: none; }
+  .backup-banner { animation: none !important; }
+}
+
+/* ===== Stagger Stats (CSS بدل JS) ===== */
+.content .stat-card {
+  animation: fadeUp 0.35s var(--ease) both;
+}
+.content .stat-card:nth-child(1)  { animation-delay: 0.00s; }
+.content .stat-card:nth-child(2)  { animation-delay: 0.025s; }
+.content .stat-card:nth-child(3)  { animation-delay: 0.050s; }
+.content .stat-card:nth-child(4)  { animation-delay: 0.075s; }
+.content .stat-card:nth-child(5)  { animation-delay: 0.100s; }
+.content .stat-card:nth-child(6)  { animation-delay: 0.125s; }
+.content .stat-card:nth-child(7)  { animation-delay: 0.150s; }
+.content .stat-card:nth-child(8)  { animation-delay: 0.175s; }
+.content .stat-card:nth-child(n+9){ animation-delay: 0.200s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .content .stat-card { animation: none !important; }
+}

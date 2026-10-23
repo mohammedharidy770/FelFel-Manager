@@ -1,0 +1,21 @@
+{
+  "name": "FelFel Manager - فيلفيل مانجر",
+  "short_name": "FelFel",
+  "description": "نظام إدارة مشروع الفلفل والمخلل",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050505",
+  "theme_color": "#0FB864",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230FB864'/%3E%3Ctext x='256' y='360' font-size='320' text-anchor='middle' fill='%23050505' font-family='Arial' font-weight='bold'%3Eف%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
